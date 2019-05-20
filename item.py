@@ -9,7 +9,7 @@ from core import EffectID
 
 
 class Item:
-    """A conceptual, non-physical item in the game"""
+    """A conceptual, non-physical item in the game item分为可堆叠和不可堆叠两种"""
 
     def __init__(self, id_: str, max_stack: int = 64, attack_range: float = 10):
         """Constructor
@@ -40,8 +40,8 @@ class Item:
             [tuple<str, tuple<str, ...>>]:
                     A list of EffectIDs resulting from the attack. Each EffectID is a pair
                     of (effect_type, effect_sub_id) pair, where:
-                      - effect_type is the type of the effect ('item', 'block', etc.)
-                      - effect_sub_id is the unique identifier for an effect of a particular type
+                      - effect_type is the type of the effect ('item', 'block', etc.)    # 效果种类
+                      - effect_sub_id is the unique identifier for an effect of a particular type    # 特定效果种类的id
         """
         raise NotImplementedError("An Item subclass must implement an attack method")
 
@@ -65,7 +65,7 @@ class Item:
         return self._max_stack_size
 
     def is_stackable(self) -> bool:
-        """(bool) Returns True iff this item is stackable in the inventory/hotbar"""
+        """(bool) Returns True if this item is stackable in the inventory/hotbar"""
         return self._max_stack_size != 1
 
     def get_attack_range(self) -> float:
@@ -107,7 +107,7 @@ class HandItem(Item):
 
 
 class SimpleItem(Item):
-    """An item that drops a Block form of itself when used"""
+    """An item that drops a Block form of itself when used 这个是不是被扔出去的item"""
 
     # The following methods have not been documented, as their purpose is simple
     # and their docstrings are inherited from Item's methods
