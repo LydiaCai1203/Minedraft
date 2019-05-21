@@ -24,6 +24,7 @@ class Stack(object):
         Pre-condition:
             0 < quantity <= item.get_max_stack_size()"""
 
+        # 这一句断言会直接抛出异常信息的，直接中止初始化，不让其初始化成功
         assert 0 <= quantity <= item.get_max_stack_size(), \
             (f"Stack creation attempted with quantity of {quantity} for Item {item.get_id()!r} "
              f"that has a maximum stack size of {item.get_max_stack_size()}")
@@ -311,6 +312,7 @@ class Grid:
         ]
 
     def __repr__(self):
+        """indent=4这个参数可以让美化json格式化输出"""
         return json.dumps([[repr(stack) for stack in row] for row in self._items], indent=4)
 
     def get_crafting_pattern(self):
@@ -361,7 +363,9 @@ class Grid:
         cell will either be a Stack, or None if its empty
         Similar to dict.items"""
         for i, row in enumerate(self._items):
+            # 遍历所有的行
             for j, cell in enumerate(row):
+                # 遍历所有的列
                 yield (i, j), cell
 
     def keys(self):

@@ -5,7 +5,8 @@ class Application(tk.Frame):
         super().__init__(master)
         self.master = master
         self.pack()
-        self.create_widgets()
+        self.create_widgets()    # 窗口的顶部是两个按钮
+        self.draw_rectangle()    # 按钮下面是一个矩形
     
     def create_widgets(self):
         self.hi_btn = tk.Button(self)
@@ -16,11 +17,13 @@ class Application(tk.Frame):
         self.quit_btn = tk.Button(self, text='QUIT', command=self.master.destroy)
         self.quit_btn.pack(side="bottom")
 
-
     def say_hi(self):
         print("Hello world!")
 
-
+    def draw_rectangle(self):
+        cv = tk.Canvas(self.master, bg='white')
+        cv.create_rectangle(10, 10, 110, 110)
+        cv.pack()
 
 if __name__ == "__main__":
     root = tk.Tk()

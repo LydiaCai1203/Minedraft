@@ -6,7 +6,9 @@ import pymunk
 from typing import Tuple, List
 from core import EffectID
 
-
+"""
+有没有发现 并没有使用@abstractmethod的装饰器 但也起到了interface的作用 只是说明该类的子类都具有哪些方法
+"""
 class PhysicalThing:
     """The highest-level abstract representation of a physical thing in the game world
 
@@ -16,11 +18,11 @@ class PhysicalThing:
         self._shape: pymunk.Shape = None
 
     def is_mineable(self) -> bool:
-        """(bool) Returns True iff this thing is able to be mined"""
+        """(bool) Returns True if this thing is able to be mined"""
         raise NotImplementedError("A PhysicalThing subclass must implement an is_mineable method")
 
     def is_useable(self) -> bool:
-        """(bool) Returns True iff this thing is able to be used"""
+        """(bool) Returns True if this thing is able to be used"""
         raise NotImplementedError("A PhysicalThing subclass must implement an is_useable method")
 
     def use(self) -> List[EffectID]:
